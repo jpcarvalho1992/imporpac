@@ -1,6 +1,6 @@
 Imporpac - Open-source "Sistema de clientes"
 ============================
-Esse tutorial está disponível sob os [termos da documentação do Yii](http://www.yiiframework.com/doc/terms/).
+Esse tutorial está disponível sob os termos de documentação da imporpac.
 
 Todos os Direitos Reservados.
 
