@@ -2,14 +2,36 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     
-    require_once(realpath(dirname( __FILE__ )) . '/..' . '/baseDados/db.php');
+    require_once(realpath(dirname( __FILE__ )) . '/..' . '/baseDados/BaseDados.php');
 
-    $baseDados = new db();
+    $baseDados = new BaseDados();
     $baseDados->acederdb();
     $baseDados->definirTabela('clientes');
-    $baseDados->enviarQuery("SET a=1");
     
-    $baseDados->fecharConexao();
+    // Obter nomes de colunas
+    $baseDados->resultado = $baseDados->enviarQuery("SHOW COLUMNS FROM `$baseDados->tabela`");
+    
+    // Cabecalho da tabela
+    $propriedadesColuna = array();
+    
+    // Cabecalho da tabela
+    $dados = array();
+    
+    // Propriedades de cada coluna
+    while ($coluna = mysqli_fetch_array($baseDados->resultado)) {
+        array_push($propriedadesColuna, $coluna[0]);
+    }
+    
+    // Obter dados
+    $baseDados->resultado = $baseDados->enviarQuery("SELECT * FROM `$baseDados->tabela`");
+    
+    // Todos os dados
+    while ($linha = mysqli_fetch_array($baseDados->resultado)) {
+        array_push($dados, $linha);
+    }
+    
+    // Fechar base de dados
+    $baseDados->fecharConexao();   
 ?>
 
 <html>
@@ -29,42 +51,34 @@
         <table id="myTable" class="tablesorter"> 
         <thead> 
         <tr> 
-            <th>Last Name</th> 
-            <th>First Name</th> 
-            <th>Email</th> 
-            <th>Due</th> 
-            <th>Web Site</th> 
+            <?php foreach ($propriedadesColuna as $item) { 
+                echo "<th>" . $item . "</th>";   
+            }
+            echo "<th>" . "Aceder" . "</th>";
+            ?>
         </tr> 
         </thead> 
         <tbody> 
-        <tr> 
-            <td>Smith</td> 
-            <td>John</td> 
-            <td>jsmith@gmail.com</td> 
-            <td>$50.00</td> 
-            <td>http://www.jsmith.com</td> 
-        </tr> 
-        <tr> 
-            <td>Bach</td> 
-            <td>Frank</td> 
-            <td>fbach@yahoo.com</td> 
-            <td>$50.00</td> 
-            <td>http://www.frank.com</td> 
-        </tr> 
-        <tr> 
-            <td>Doe</td> 
-            <td>Jason</td> 
-            <td>jdoe@hotmail.com</td> 
-            <td>$100.00</td> 
-            <td>http://www.jdoe.com</td> 
-        </tr> 
-        <tr> 
-            <td>Conway</td> 
-            <td>Tim</td> 
-            <td>tconway@earthlink.net</td> 
-            <td>$50.00</td> 
-            <td>http://www.timconway.com</td> 
-        </tr> 
+        <?php 
+        
+        // Organizar codigo
+        foreach ($dados as $linha) { 
+            echo "<tr>";   
+                if (count($linha) >= 1){
+                    for ($coluna = 0; $coluna < count($propriedadesColuna); ++$coluna)
+                    {
+                        echo "<td>" . $linha[$coluna] . "</td>";
+                    }
+                    
+                    //Para aceder a dados de cada cliente
+                    echo "<td>";
+                    echo "<form action=\"paginaCliente.php\" method=\"post\" id=\"form1\">";
+                    echo "<button type=\"submit\" form=\"form1\" value=\"Submit\">Aceder</button>";
+                    echo "</form>";
+                    echo "</td>";
+                }
+            echo "</tr>";
+        }?>
         </tbody> 
         </table> 
     </body>
