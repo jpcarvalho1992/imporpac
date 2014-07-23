@@ -1,6 +1,13 @@
 <?php
-    ini_set('error_reporting', E_ALL);
-    require_once(dirname( __FILE__ ) . '/configuracoes/conf.php');
+    // Para detectar erros
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    
+    require_once(realpath(dirname( __FILE__ )) . '/configuracoes/conf.php');
+    
+    // Somente para teste
+    $redirecionar = "/imporpac/clientes/tabelaClientes.php";
+    header("location:$redirecionar");
 ?>
 
 <!doctype html>
@@ -29,11 +36,4 @@
 	</div>
     
 </body>
-</html>
-	
-	
-	
-	
-	
-		
-	
+</html> -->	
