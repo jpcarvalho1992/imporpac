@@ -29,5 +29,5 @@ Ficheiros:
 
     **tabelaClientes.php**
     
-    Mostra a tabela como todos os clientes da base de dados
+    Mostra a tabela com todos os clientes da base de dados
 

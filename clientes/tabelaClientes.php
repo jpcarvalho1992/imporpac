@@ -14,7 +14,7 @@
     // Cabecalho da tabela
     $propriedadesColuna = array();
     
-    // Cabecalho da tabela
+    // Dados dos Clientes
     $dados = array();
     
     // Propriedades de cada coluna
@@ -72,8 +72,8 @@
                     
                     //Para aceder a dados de cada cliente
                     echo "<td>";
-                    echo "<form action=\"paginaCliente.php\" method=\"post\" id=\"form1\">";
-                    echo "<button type=\"submit\" form=\"form1\" value=\"Submit\">Aceder</button>";
+                    echo "<form action=\"paginaCliente.php\" method=\"post\" id=\"tabelaClientesForm\">";
+                    echo "<button type=\"submit\" form=\"tabelaClientesForm\" name=\"id_cliente\" value=\"". $linha[0] ."\">Aceder</button>";
                     echo "</form>";
                     echo "</td>";
                 }
