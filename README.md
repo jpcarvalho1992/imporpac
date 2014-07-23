@@ -1,7 +1,7 @@
-Will become a heading
+Imporpac - Software de gerenciamento de clientes
 ==============
 
-Will become a sub heading
+Resumo
 --------------
 
 *This will be Italic*
@@ -12,3 +12,22 @@ Will become a sub heading
 - This will be a list item
 
     Add a indent and this will end up as code
+
+Ficheiros:
+--------------
+**Pasta baseDados**
+    
+    **BaseDados.php**
+    
+    Classe que permite o acesso à base de dados. Funciona como um modulo.
+
+**Pasta clientes**
+    
+    **Cliente.php**
+    
+    Classe que define cada cliente.
+
+    **tabelaClientes.php**
+    
+    Mostra a tabela como todos os clientes da base de dados
+

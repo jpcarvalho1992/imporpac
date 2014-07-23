@@ -4,7 +4,7 @@ require_once(dirname( __FILE__ ) . '/configuracoes/conf.php');
 require_once(dirname( __FILE__ ) . '/baseDados/db.php');
 require_once(dirname( __FILE__ ) . '/material/material.php');
 
-class cliente {
+class Cliente {
     
     // Dados dos clientes
     public $id;
